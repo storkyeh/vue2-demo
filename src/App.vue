@@ -1,20 +1,21 @@
-<template>
-  <div id="app">
-    <Display></Display>
-    <Increment></Increment>
-  </div>
-</template>
-
 <script>
 import store from './store' // import 我们刚刚创建的 store
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
+  render(h) {
+    return (
+      <div id="app">
+        <display></display>
+        <increment></increment>
+      </div>
+    )
+  },
   name: 'app',
   components: {
     Display: {
       render(h) {
-        return h('h1', ['Count is ' + this.count])
+        return <h1>Count is {this.count}</h1>
       },
       computed: mapGetters([
         'count'
@@ -22,11 +23,7 @@ export default {
     },
     Increment: {
       render(h) {
-        return h('button', {
-          on: {
-            click: this.INCREMENT
-          }
-        }, 'Increment +1')
+        return <button on-click={this.INCREMENT}>Increment +1</button>
       },
       methods: mapActions([
         'INCREMENT'
